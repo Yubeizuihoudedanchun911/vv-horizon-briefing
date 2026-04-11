@@ -62,7 +62,7 @@ For each language in `config_snapshot.languages`, generate a summary following `
 - Each item gets a `{one_sentence_abstract}` — one complete sentence, not a title rewrite
 - Include the `{source_analysis}` paragraph from Phase 3.5
 
-Write to: `{output_dir}/{YYYY-MM-DD}/summary-{lang}.md`
+Write to: `./fetchs/{output_dir}/{YYYY-MM-DD}/summary-{lang}.md`
 
 ## Phase 5: Deep Analysis
 
@@ -71,7 +71,7 @@ Read `references/article-writing-guide.md` from this skill directory before writ
 For each top-N item, generate a deep analysis following `assets/templates/article.md`:
 - Sections: 摘要, 核心内容, 技术背景, 方法与实现, 影响与意义, 前景展望, 社区讨论
 - 社区讨论: only generate if the item has comments data; otherwise omit the section entirely
-- Write to: `{output_dir}/{YYYY-MM-DD}/articles/{N}-{title_slug}-{lang}.md`
+- Write to: `./fetchs/{output_dir}/{YYYY-MM-DD}/articles/{N}-{title_slug}-{lang}.md`
 - `title_slug`: lowercase, spaces to hyphens, remove non-alphanumeric, truncate to 50 chars
 
 ## Phase 6: Completion Report
