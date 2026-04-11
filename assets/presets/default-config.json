@@ -1,0 +1,93 @@
+{
+  "sources": {
+    "github": [
+      {
+        "type": "repo_releases",
+        "owner": "anthropics",
+        "repo": "anthropic-sdk-python",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "langchain-ai",
+        "repo": "langchain",
+        "enabled": true
+      }
+    ],
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": true,
+      "min_score": 100
+    },
+    "rss": [
+      {
+        "name": "量子位",
+        "url": "https://wechat2rss.xlab.app/feed/7131b577c61365cb47e81000738c10d872685908.xml",
+        "enabled": true,
+        "category": "ai-news"
+      },
+      {
+        "name": "新智元",
+        "url": "https://wechat2rss.xlab.app/feed/ede30346413ea70dbef5d485ea5cbb95cca446e7.xml",
+        "enabled": true,
+        "category": "ai-news"
+      },
+      {
+        "name": "Simon Willison's Weblog",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "llm"
+      },
+      {
+        "name": "Hugging Face Blog",
+        "url": "https://huggingface.co/blog/feed.xml",
+        "enabled": true,
+        "category": "llm"
+      },
+      {
+        "name": "LangChain Blog",
+        "url": "https://blog.langchain.dev/rss/",
+        "enabled": true,
+        "category": "agents"
+      },
+      {
+        "name": "ArXiv cs.AI",
+        "url": "https://arxiv.org/rss/cs.AI",
+        "enabled": true,
+        "category": "research"
+      },
+      {
+        "name": "Google Cloud Blog",
+        "url": "https://cloudblog.withgoogle.com/rss/",
+        "enabled": true,
+        "category": "cloud"
+      }
+    ],
+    "reddit": {
+      "enabled": true,
+      "subreddits": [
+        {
+          "subreddit": "LocalLLaMA",
+          "sort": "hot",
+          "fetch_limit": 25,
+          "min_score": 20
+        },
+        {
+          "subreddit": "MachineLearning",
+          "sort": "hot",
+          "fetch_limit": 25,
+          "min_score": 50
+        }
+      ],
+      "fetch_comments": 5
+    }
+  },
+  "filtering": {
+    "time_window_hours": 72
+  },
+  "output": {
+    "languages": ["zh"],
+    "top_n": 10,
+    "output_dir": "output"
+  }
+}
