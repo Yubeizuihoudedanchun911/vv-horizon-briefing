@@ -1,0 +1,7 @@
+output/
+fetched.json
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
