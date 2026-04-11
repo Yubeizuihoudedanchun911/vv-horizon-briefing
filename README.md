@@ -80,6 +80,36 @@ output/
 | Reddit     | Subreddit hot posts + user submissions, with comments   |
 | Telegram   | Public channel messages via web preview                  |
 
+## Use Case: AI Agent & LLM 7-Day Weekly Briefing
+
+> Fetching the last 7 days, prioritizing AI agent engineering and LLM model content.
+
+**Trigger:**
+```
+拉取近7天的信息, 优先读取ai agent工程、llm模型内容
+```
+
+**Result (2026-04-12):** 86 items fetched from 4 sources → Top 10 selected
+
+| Rank | Title | Score |
+|------|-------|-------|
+| 1 | Small models also found the vulnerabilities that Mythos found (HN 348↑) | 10/10 |
+| 2 | GLM 5.1 crushes every model except Opus in agentic benchmark at 1/3 cost (Reddit 282↑) | 9/10 |
+| 3 | DFlash speculative decoding on Apple Silicon: 85 tok/s, 3.3x on Qwen3.5-9B (Reddit 135↑) | 8/10 |
+| 4 | GLM 5.1 tops code arena rankings for open models (Reddit 546↑) | 8/10 |
+| 5 | Near-100% Accurate Data for Agent with Comprehensive Context Engineering | 8/10 |
+| 6 | Create Expert Content: Local Testing of a Multi-Agent System with Memory | 8/10 |
+| 7 | What happened to Deepseek? (Reddit 293↑) | 8/10 |
+| 8 | Gemma 4 31B vs Qwen 3.5 27B: long context workflows (Reddit 235↑) | 8/10 |
+| 9 | GLM-5.1: Towards Long-Horizon Tasks | 7/10 |
+| 10 | Deep Agents Deploy: open alternative to Claude Managed Agents | 7/10 |
+
+**Key themes this week:** GLM-5.1 agent capability surge · Gemma 4 local inference optimization · AI Agent context engineering
+
+**Output:** `summary-zh.md` + 10 deep-analysis articles under `data/2026-04-12/articles/`
+
+---
+
 ## Acknowledgements
 
 Built upon [Horizon](https://github.com/Thysrael/Horizon) by Thysrael and contributors.
