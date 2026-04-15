@@ -62,6 +62,7 @@ For each language in `config_snapshot.languages`, generate a summary following `
 - Language handling: `"en"` = English, `"zh"` = Chinese with Pangu spacing (space between CJK and ASCII)
 - Each item gets a `{one_sentence_abstract}` — one complete sentence, not a title rewrite
 - Include the `{source_analysis}` paragraph from Phase 3.5
+- For `{other_items_by_category}`: take all scored items NOT in top-N, group them by category (infer category from title/content, e.g. 模型发布、工具框架、研究论文、行业动态), render each group as a markdown section with bullet links: `- [{title}]({url}) · {source_type} · {score}/10`
 
 Write to: `./data/{YYYY-MM-DD}/summary-{lang}.md`
 
