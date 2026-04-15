@@ -1,5 +1,5 @@
 ---
-name: horizon-briefing
+name: vv-horizon-briefing
 description: Fetch tech news from configured sources, score and filter with AI, generate daily briefing with deep analysis
 ---
 
