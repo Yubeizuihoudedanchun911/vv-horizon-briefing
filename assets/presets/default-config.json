@@ -19,6 +19,90 @@
       "fetch_top_stories": true,
       "min_score": 100
     },
+    "aggregators": [
+      {
+        "name": "AI今日热榜",
+        "type": "aihot",
+        "enabled": true,
+        "url": "https://www.aihot.cn/"
+      },
+      {
+        "name": "TechURLs",
+        "type": "techurls",
+        "enabled": true,
+        "url": "https://techurls.com/",
+        "description": "技术链接聚合，汇集 Hacker News、Reddit 等技术社区热门文章"
+      },
+      {
+        "name": "NewsNow",
+        "type": "newsnow",
+        "enabled": true,
+        "url": "https://newsnow.co/",
+        "description": "新闻聚合平台，实时追踪全球科技新闻"
+      },
+      {
+        "name": "TopHub",
+        "type": "tophub",
+        "enabled": true,
+        "url": "https://tophub.today/",
+        "description": "今日热榜，聚合微博、知乎、B站等 50+ 平台热门内容"
+      },
+      {
+        "name": "Buzzing",
+        "type": "buzzing",
+        "enabled": true,
+        "url": "https://www.buzzing.cc/",
+        "description": "热门话题聚合，收集 Reddit、HN、Twitter 等平台讨论"
+      },
+      {
+        "name": "Info Flow",
+        "type": "iris",
+        "enabled": true,
+        "url": "https://info-flow.codelife.cc/",
+        "description": "RSS 信息流，精选科技博客和资讯"
+      },
+      {
+        "name": "Zeli",
+        "type": "zeli",
+        "enabled": true,
+        "url": "https://zeli.app/",
+        "description": "Hacker News 24 小时热榜精选"
+      },
+      {
+        "name": "AI HubToday",
+        "type": "aihubtoday",
+        "enabled": true,
+        "url": "https://aihubtoday.com/",
+        "description": "AI 资讯日报，每日精选 AI 领域重要动态"
+      },
+      {
+        "name": "AIbase",
+        "type": "aibase",
+        "enabled": true,
+        "url": "https://www.aibase.com/",
+        "description": "AI 产品数据库，收录最新 AI 工具和应用"
+      },
+      {
+        "name": "BestBlogs",
+        "type": "bestblogs",
+        "enabled": true,
+        "url": "https://bestblogs.dev/",
+        "description": "优质博客周刊，精选技术博客文章"
+      },
+      {
+        "name": "WaytoAGI",
+        "type": "waytoagi",
+        "enabled": true,
+        "url": "https://waytoagi.feishu.cn/",
+        "description": "飞书知识库 AI 更新"
+      },
+      {
+        "name": "YouTube",
+        "type": "youtube",
+        "enabled": true,
+        "description": "AI 博主最新视频"
+      }
+    ],
     "rss": [
       {
         "name": "量子位",
@@ -61,7 +145,69 @@
         "url": "https://cloudblog.withgoogle.com/rss/",
         "enabled": true,
         "category": "cloud"
-      }
+      },
+
+      // ---- 追加公众号RSS源 ----
+
+      // AI/人工智能相关
+      {"name": "机器之心", "url": "https://decemberpei.cyou/rssbox/wechat-jiqizhixin.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "量子位", "url": "https://decemberpei.cyou/rssbox/wechat-liangziwei.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "新智元", "url": "https://decemberpei.cyou/rssbox/wechat-xinzhiyuan.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "DeepTech深科技", "url": "https://decemberpei.cyou/rssbox/wechat-shenkeji.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "PaperWeekly", "url": "https://decemberpei.cyou/rssbox/wechat-paperweekly.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "计算机视觉life", "url": "https://decemberpei.cyou/rssbox/wechat-jisuanjishijuelife.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "AI前线", "url": "https://decemberpei.cyou/rssbox/wechat-aiqianxian.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "夕小瑶科技说", "url": "https://decemberpei.cyou/rssbox/wechat-xixiaoyaokejishuo.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "海外独角兽", "url": "https://decemberpei.cyou/rssbox/wechat-haiwaidujiaoshou.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "甲子光年", "url": "https://decemberpei.cyou/rssbox/wechat-jiaziguangnian.xml", "enabled": true, "category": "AI-人工智能相关"},
+      {"name": "集智俱乐部", "url": "https://decemberpei.cyou/rssbox/wechat-jizhijvlebu.xml", "enabled": true, "category": "AI-人工智能相关"},
+      // 科技/互联网媒体
+      {"name": "晚点LatePost", "url": "https://decemberpei.cyou/rssbox/wechat-wandian.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "36氪", "url": "https://decemberpei.cyou/rssbox/wechat-36ke.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "36氪Pro", "url": "https://decemberpei.cyou/rssbox/wechat-sanliukepro.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "虎嗅App", "url": "https://decemberpei.cyou/rssbox/wechat-huxiuapp.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "极客公园", "url": "https://decemberpei.cyou/rssbox/wechat-jikegongyuan.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "少数派", "url": "https://decemberpei.cyou/rssbox/wechat-shaoshupai.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "APPSO", "url": "https://decemberpei.cyou/rssbox/wechat-appso.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "爱范儿", "url": "https://decemberpei.cyou/rssbox/wechat-anfaner.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "差评", "url": "https://decemberpei.cyou/rssbox/wechat-chaping.xml", "enabled": true, "category": "科技-互联网媒体"},
+      {"name": "钛媒体", "url": "https://decemberpei.cyou/rssbox/wechat-taimeiti.xml", "enabled": true, "category": "科技-互联网媒体"},
+      // 技术/开发者
+      {"name": "InfoQ", "url": "https://decemberpei.cyou/rssbox/wechat-infoq.xml", "enabled": true, "category": "技术-开发者"},
+      {"name": "阿里云开发者", "url": "https://decemberpei.cyou/rssbox/wechat-aliyunkaifazhe.xml", "enabled": true, "category": "技术-开发者"},
+      {"name": "腾讯技术工程", "url": "https://decemberpei.cyou/rssbox/wechat-tengxunjishugongcheng.xml", "enabled": true, "category": "技术-开发者"},
+      {"name": "前端之巅", "url": "https://decemberpei.cyou/rssbox/wechat-qianduanzhidian.xml", "enabled": true, "category": "技术-开发者"},
+      {"name": "架构师之路", "url": "https://decemberpei.cyou/rssbox/wechat-jiagoushizhilu.xml", "enabled": true, "category": "技术-开发者"},
+      {"name": "GitHubDaily", "url": "https://decemberpei.cyou/rssbox/wechat-githubdaily.xml", "enabled": true, "category": "技术-开发者"},
+      // 财经/投资
+      {"name": "华尔街见闻", "url": "https://decemberpei.cyou/rssbox/wechat-huaerjiejianwen.xml", "enabled": true, "category": "财经-投资"},
+      {"name": "财经杂志", "url": "https://decemberpei.cyou/rssbox/wechat-caijingzazhi.xml", "enabled": true, "category": "财经-投资"},
+      {"name": "第一财经YiMagazine", "url": "https://decemberpei.cyou/rssbox/wechat-diyicaijing.xml", "enabled": true, "category": "财经-投资"},
+      {"name": "经纬创投", "url": "https://decemberpei.cyou/rssbox/wechat-jingweichuangtou.xml", "enabled": true, "category": "财经-投资"},
+      {"name": "红杉汇", "url": "https://decemberpei.cyou/rssbox/wechat-hongshanhui.xml", "enabled": true, "category": "财经-投资"},
+      {"name": "42章经", "url": "https://decemberpei.cyou/rssbox/wechat-sierzhangjing.xml", "enabled": true, "category": "财经-投资"},
+      {"name": "远川投资评论", "url": "https://decemberpei.cyou/rssbox/wechat-chuanyuanyouzipinglun.xml", "enabled": true, "category": "财经-投资"},
+      {"name": "泽平宏观展望", "url": "https://decemberpei.cyou/rssbox/wechat-zepinghongguanzhanwang.xml", "enabled": true, "category": "财经-投资"},
+      // 高质量个人博主
+      {"name": "caoz的梦呓", "url": "https://decemberpei.cyou/rssbox/wechat-caozdemengyi.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "L先生说", "url": "https://decemberpei.cyou/rssbox/wechat-lxianshengshuo.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "槽边往事", "url": "https://decemberpei.cyou/rssbox/wechat-caobianwangshi.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "孟岩", "url": "https://decemberpei.cyou/rssbox/wechat-mengyan.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "刘润", "url": "https://decemberpei.cyou/rssbox/wechat-liurun.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "辉哥奇谭", "url": "https://decemberpei.cyou/rssbox/wechat-huigeqitan.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "warfalcon", "url": "https://decemberpei.cyou/rssbox/wechat-warfalcon.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "玉树芝兰", "url": "https://decemberpei.cyou/rssbox/wechat-yushuzhilan.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "九边", "url": "https://decemberpei.cyou/rssbox/wechat-jiubian.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "也谈钱", "url": "https://decemberpei.cyou/rssbox/wechat-yetanqian.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "keso怎么看", "url": "https://decemberpei.cyou/rssbox/wechat-kesozenmekan.xml", "enabled": true, "category": "高质量个人博主"},
+      {"name": "阑夕", "url": "https://decemberpei.cyou/rssbox/wechat-lanxi.xml", "enabled": true, "category": "高质量个人博主"},
+      // 产品/商业
+      {"name": "人人都是产品经理", "url": "https://decemberpei.cyou/rssbox/wechat-renrendoushichanpinjingli.xml", "enabled": true, "category": "产品-商业"},
+      {"name": "互联网怪盗团", "url": "https://decemberpei.cyou/rssbox/wechat-hulianwangguaidaotuan.xml", "enabled": true, "category": "产品-商业"},
+      {"name": "乱翻书", "url": "https://decemberpei.cyou/rssbox/wechat-luanfanshu.xml", "enabled": true, "category": "产品-商业"},
+      {"name": "刘言飞语", "url": "https://decemberpei.cyou/rssbox/wechat-liuyanfeiyu.xml", "enabled": true, "category": "产品-商业"},
+      {"name": "产品犬舍", "url": "https://decemberpei.cyou/rssbox/wechat-chanpinquanshe.xml", "enabled": true, "category": "产品-商业"},
+      {"name": "FounderPark", "url": "https://decemberpei.cyou/rssbox/wechat-founderpark.xml", "enabled": true, "category": "产品-商业"}
     ],
     "reddit": {
       "enabled": true,

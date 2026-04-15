@@ -1,0 +1,9 @@
+{
+  "rss": [
+    "http://example.com/feed1",
+    "http://example.com/feed2",
+    "http://example.com/feed3",
+    "http://example.com/feed4"
+    // Add other WeChat RSS feeds here from ai-news-aggregator
+  ]
+}
