@@ -51,7 +51,7 @@ export GITHUB_TOKEN=your_token_here
 In Claude Code, type:
 
 ```
-/horizon-briefing
+/vv-horizon-briefing
 ```
 
 Or just say: "Generate today's tech briefing"
