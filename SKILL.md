@@ -9,7 +9,7 @@ Generate a daily tech briefing from configured data sources (GitHub, HackerNews,
 
 ## Trigger
 
-User types `/horizon-briefing` or asks to "generate a briefing" / "run horizon briefing".
+User types `/vv-horizon-briefing` or asks to "generate a briefing" / "run horizon briefing".
 
 ## Phase 1: Environment Check
 
