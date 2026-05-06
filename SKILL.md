@@ -25,11 +25,14 @@ User types `/vv-horizon-briefing` or asks to "generate a briefing" / "run horizo
 ## Phase 2: Fetch Data
 
 1. Ask the user: "抓取最近几天的内容？（默认 3 天，输入数字或直接回车）"
-2. Determine today's date as `{YYYY-MM-DD}`. Create the output directory `./data/{YYYY-MM-DD}/` if it does not exist.
-3. Run with the user's input (default 3 if no input):
+2. Read `config.json` and extract `output.output_dir` (if present). Determine the base output directory:
+   - If `output.output_dir` is set, use it as `{base_dir}`
+   - Otherwise, use `./data` as `{base_dir}`
+3. Determine today's date as `{YYYY-MM-DD}`. Create the output directory `{base_dir}/{YYYY-MM-DD}/` if it does not exist.
+4. Run with the user's input (default 3 if no input):
    `python3 <skill_dir>/scripts/fetch.py --config config.json --days N`
-4. Verify `fetched.json` was created, then move it to `./data/{YYYY-MM-DD}/fetched.json`. Read it from that path.
-5. Report item count and source count to the user.
+5. Verify `fetched.json` was created, then move it to `{base_dir}/{YYYY-MM-DD}/fetched.json`. Read it from that path.
+6. Report item count and source count to the user.
 
 ## Phase 3: Score and Filter
 
@@ -64,7 +67,7 @@ For each language in `config_snapshot.languages`, generate a summary following `
 - Include the `{source_analysis}` paragraph from Phase 3.5
 - For `{other_items_by_category}`: take all scored items NOT in top-N, group them by category (infer category from title/content, e.g. 模型发布、工具框架、研究论文、行业动态), render each group as a markdown section with bullet links: `- [{title}]({url}) · {source_type} · {score}/10`
 
-Write to: `./data/{YYYY-MM-DD}/summary-{lang}.md`
+Write to: `{base_dir}/{YYYY-MM-DD}/summary-{lang}.md`
 
 ## Phase 5: Deep Analysis (Parallel)
 
@@ -99,7 +102,7 @@ You are writing a deep analysis article for a tech briefing.
 {writing_guide}
 
 **Output:** Write the completed article to:
-`./data/{YYYY-MM-DD}/articles/{N}-{title_slug}-{lang}.md`
+`{base_dir}/{YYYY-MM-DD}/articles/{N}-{title_slug}-{lang}.md`
 
 - `{N}` = rank number (1-based)
 - `{title_slug}` = lowercase title, spaces→hyphens, non-alphanumeric removed, truncated to 50 chars
