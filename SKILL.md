@@ -31,14 +31,18 @@ User types `/vv-horizon-briefing` or asks to "generate a briefing" / "run horizo
 3. Determine today's date as `{YYYY-MM-DD}`. Create the output directory `{base_dir}/{YYYY-MM-DD}/` if it does not exist.
 4. Run with the user's input (default 3 if no input):
    `python3 <skill_dir>/scripts/fetch.py --config config.json --days N`
-5. Verify `fetched.json` was created, then move it to `{base_dir}/{YYYY-MM-DD}/fetched.json`. Read it from that path.
-6. Report item count and source count to the user.
+5. If the script exits with a non-zero code or `fetched.json` is not created, report the error output to the user and stop — do not proceed to Phase 3.
+6. Move `fetched.json` to `{base_dir}/{YYYY-MM-DD}/fetched.json`. Read it from that path. The file is a JSON object with an `items` array and a `config_snapshot` object.
+7. Report item count and source count to the user.
 
 ## Phase 3: Score and Filter
 
 Read `references/scoring-criteria.md` from this skill directory before scoring.
 
 Score each item 0–10 using the 5-dimension rubric (新颖性, 影响力, 技术深度, 社区信号, 时效性 — 2 points each). Sort descending, take top N from `config_snapshot.top_n` (default 10).
+
+- **For 100+ items:** score in batches of ~30. After all batches are complete, merge all scores into one list, sort descending, and take the global top N. In case of a tie, prefer the item with higher 时效性.
+- **If total items ≤ top_n:** skip the "other items" section in the summary (Phase 4) — there are no non-top items to list.
 
 Output a scoring summary table to the user showing rank, title, and score.
 
@@ -126,4 +130,4 @@ Collect each agent's reported output path and any errors for the Phase 6 report.
 - The fetch script handles all network requests. Do not use WebFetch or curl for source data.
 - All AI analysis is done by Claude in-context. No external AI API calls.
 - If 0 items are fetched, skip phases 3–5.
-- For 100+ items, score in batches of ~30 to avoid context overflow.
+- RSS `content` fields may contain multiple article snippets separated by `--- From rss ---`. When scoring or writing articles, use only the text before the first separator as the primary content.
