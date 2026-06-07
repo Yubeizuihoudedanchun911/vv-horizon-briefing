@@ -67,7 +67,7 @@ Read `references/summary-writing-guide.md` from this skill directory before writ
 
 For each language in `config_snapshot.languages`, generate a summary following `assets/templates/summary.md`:
 - Language handling: `"en"` = English, `"zh"` = Chinese
-- **CRITICAL Pangu Spacing Rule for zh:** Every CJK character MUST have a space on both sides when adjacent to any ASCII character (letters, digits, punctuation, symbols). This applies to ALL text: headings, body, links, metadata, source analysis. Examples: `Anthropic 发布了 Claude 4` (not `Anthropic发布了Claude4`), `评分 8/10` (not `评分8/10`). No exceptions — even in markdown link text and bullet points. After writing the summary, scan every line and fix any violations before writing the file.
+- **CRITICAL Pangu Spacing Rule for zh:** Every CJK character MUST have a space on both sides when adjacent to any ASCII character (letters, digits, punctuation, symbols). [Note: if the ASCII character is a single digit, then do not insert space.] This applies to ALL text: headings, body, links, metadata, source analysis. Examples: `Anthropic 发布了 Claude 4` (not `Anthropic发布了Claude4`), `评分 8/10` (not `评分8/10`). No exceptions — even in markdown link text and bullet points. After writing the summary, scan every line and fix any violations before writing the file.
 - Each item gets a `{one_sentence_abstract}` — one complete sentence, not a title rewrite. **CRITICAL: Every abstract MUST contain at least one specific fact — a number, version, percentage, metric, or named entity.** Vague abstracts like "某公司发布了新模型" FAIL — write "某公司发布了 405B 参数的模型 X v3.1，性能提升 23%". If the source content is too short to extract specific data, infer from title keywords or note the significance explicitly (e.g. "首次开源" counts as a specific claim).
 - Include the `{source_analysis}` paragraph from Phase 3.5
 - For `{other_items_by_category}`: take all scored items NOT in top-N, group them by category (infer category from title/content, e.g. 模型发布、工具框架、研究论文、行业动态), render each group as a markdown section with bullet links: `- [{title}]({url}) · {source_type} · {score}/10`
@@ -80,7 +80,7 @@ After writing `summary-zh.md` (if `zh` is in config languages), run a self-check
 
 1. Re-read the written `summary-zh.md` file
 2. Scan every line for CJK characters directly adjacent to ASCII characters without a space
-3. Fix all violations: insert a space between every CJK-ASCII boundary (both directions)
+3. Fix all violations: insert a space between every CJK-ASCII boundary (both directions) [Note: if the ASCII character is a single digit, then do not insert space.]
 4. Rewrite the corrected version to the same file path
 
 For articles in Phase 5, the Pangu spacing rule is embedded in each sub-agent prompt — no separate check needed here.
@@ -100,7 +100,7 @@ Construct the following prompt for each item (substitute all placeholders with a
 ---
 You are writing a deep analysis article for a tech briefing.
 
-**Pangu Spacing Rule (CRITICAL):** Every CJK character MUST have a space on both sides when adjacent to any ASCII character (letters, digits, punctuation, symbols). Examples: `Anthropic 发布了 Claude 4` (not `Anthropic发布了Claude4`), `评分 8/10` (not `评分8/10`). No exceptions — apply to headings, body text, inline code references, and all content. Scan the entire article for violations before writing the file.
+**Pangu Spacing Rule (CRITICAL):** Every CJK character MUST have a space on both sides when adjacent to any ASCII character (letters, digits, punctuation, symbols). [Note: if the ASCII character is a single digit, then do not insert space.] Examples: `Anthropic 发布了 Claude 4` (not `Anthropic发布了Claude4`), `评分 8/10` (not `评分8/10`). No exceptions — apply to headings, body text, inline code references, and all content. Scan the entire article for violations before writing the file.
 
 **Item data:**
 - Title: {title}
