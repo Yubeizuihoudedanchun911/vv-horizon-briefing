@@ -350,10 +350,17 @@ class RSSScraper(BaseScraper):
             response.raise_for_status()
             feed = feedparser.parse(response.text)
 
+            no_date_filter = "decemberpei.cyou" in feed_url
+
             for entry in feed.entries:
                 published_at = self._parse_date(entry)
-                if not published_at or published_at < since:
-                    continue
+
+                if no_date_filter:
+                    if not published_at:
+                        published_at = datetime.now(timezone.utc)
+                else:
+                    if not published_at or published_at < since:
+                        continue
 
                 feed_id = str(source.get("url", "")).split("//")[-1].replace("/", "_")
                 entry_id = entry.get("id", entry.get("link", ""))
@@ -692,6 +699,17 @@ def merge_cross_source_duplicates(items: List[ContentItem]) -> List[ContentItem]
         if host.startswith("www."):
             host = host[4:]
         path = parsed.path.rstrip("/")
+        if "mp.weixin.qq.com" in host:
+            qs = parsed.query
+            if qs:
+                from urllib.parse import parse_qs
+                params = parse_qs(qs)
+                key_params = []
+                for k in ("sn", "mid", "idx", "__biz"):
+                    if k in params:
+                        key_params.append(f"{k}={params[k][0]}")
+                if key_params:
+                    return f"{host}{path}?{'&'.join(sorted(key_params))}"
         return f"{host}{path}"
 
     url_groups: Dict[str, List[ContentItem]] = {}

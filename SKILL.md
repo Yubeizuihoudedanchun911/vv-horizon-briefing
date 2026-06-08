@@ -31,14 +31,18 @@ User types `/vv-horizon-briefing` or asks to "generate a briefing" / "run horizo
 3. Determine today's date as `{YYYY-MM-DD}`. Create the output directory `{base_dir}/{YYYY-MM-DD}/` if it does not exist.
 4. Run with the user's input (default 3 if no input):
    `python3 <skill_dir>/scripts/fetch.py --config config.json --days N`
-5. Verify `fetched.json` was created, then move it to `{base_dir}/{YYYY-MM-DD}/fetched.json`. Read it from that path.
-6. Report item count and source count to the user.
+5. If the script exits with a non-zero code or `fetched.json` is not created, report the error output to the user and stop — do not proceed to Phase 3.
+6. Move `fetched.json` to `{base_dir}/{YYYY-MM-DD}/fetched.json`. Read it from that path. The file is a JSON object with an `items` array and a `config_snapshot` object.
+7. Report item count and source count to the user.
 
 ## Phase 3: Score and Filter
 
 Read `references/scoring-criteria.md` from this skill directory before scoring.
 
 Score each item 0–10 using the 5-dimension rubric (新颖性, 影响力, 技术深度, 社区信号, 时效性 — 2 points each). Sort descending, take top N from `config_snapshot.top_n` (default 10).
+
+- **For 100+ items:** score in batches of ~30. After all batches are complete, merge all scores into one list, sort descending, and take the global top N. In case of a tie, prefer the item with higher 时效性.
+- **If total items ≤ top_n:** skip the "other items" section in the summary (Phase 4) — there are no non-top items to list.
 
 Output a scoring summary table to the user showing rank, title, and score.
 
@@ -62,12 +66,24 @@ After scoring, before generating summaries:
 Read `references/summary-writing-guide.md` from this skill directory before writing.
 
 For each language in `config_snapshot.languages`, generate a summary following `assets/templates/summary.md`:
-- Language handling: `"en"` = English, `"zh"` = Chinese with Pangu spacing (space between CJK and ASCII)
-- Each item gets a `{one_sentence_abstract}` — one complete sentence, not a title rewrite
+- Language handling: `"en"` = English, `"zh"` = Chinese
+- **CRITICAL Pangu Spacing Rule for zh:** Every CJK character MUST have a space on both sides when adjacent to any ASCII character (letters, digits, punctuation, symbols). [Note: if the ASCII character is a single digit, then do not insert space.] This applies to ALL text: headings, body, links, metadata, source analysis. Examples: `Anthropic 发布了 Claude 4` (not `Anthropic发布了Claude4`), `评分 8/10` (not `评分8/10`). No exceptions — even in markdown link text and bullet points. After writing the summary, scan every line and fix any violations before writing the file.
+- Each item gets a `{one_sentence_abstract}` — one complete sentence, not a title rewrite. **CRITICAL: Every abstract MUST contain at least one specific fact — a number, version, percentage, metric, or named entity.** Vague abstracts like "某公司发布了新模型" FAIL — write "某公司发布了 405B 参数的模型 X v3.1，性能提升 23%". If the source content is too short to extract specific data, infer from title keywords or note the significance explicitly (e.g. "首次开源" counts as a specific claim).
 - Include the `{source_analysis}` paragraph from Phase 3.5
 - For `{other_items_by_category}`: take all scored items NOT in top-N, group them by category (infer category from title/content, e.g. 模型发布、工具框架、研究论文、行业动态), render each group as a markdown section with bullet links: `- [{title}]({url}) · {source_type} · {score}/10`
 
 Write to: `{base_dir}/{YYYY-MM-DD}/summary-{lang}.md`
+
+## Phase 4.5: Pangu Spacing Self-Check
+
+After writing `summary-zh.md` (if `zh` is in config languages), run a self-check:
+
+1. Re-read the written `summary-zh.md` file
+2. Scan every line for CJK characters directly adjacent to ASCII characters without a space
+3. Fix all violations: insert a space between every CJK-ASCII boundary (both directions) [Note: if the ASCII character is a single digit, then do not insert space.]
+4. Rewrite the corrected version to the same file path
+
+For articles in Phase 5, the Pangu spacing rule is embedded in each sub-agent prompt — no separate check needed here.
 
 ## Phase 5: Deep Analysis (Parallel)
 
@@ -83,6 +99,8 @@ Construct the following prompt for each item (substitute all placeholders with a
 
 ---
 You are writing a deep analysis article for a tech briefing.
+
+**Pangu Spacing Rule (CRITICAL):** Every CJK character MUST have a space on both sides when adjacent to any ASCII character (letters, digits, punctuation, symbols). [Note: if the ASCII character is a single digit, then do not insert space.] Examples: `Anthropic 发布了 Claude 4` (not `Anthropic发布了Claude4`), `评分 8/10` (not `评分8/10`). No exceptions — apply to headings, body text, inline code references, and all content. Scan the entire article for violations before writing the file.
 
 **Item data:**
 - Title: {title}
@@ -126,4 +144,4 @@ Collect each agent's reported output path and any errors for the Phase 6 report.
 - The fetch script handles all network requests. Do not use WebFetch or curl for source data.
 - All AI analysis is done by Claude in-context. No external AI API calls.
 - If 0 items are fetched, skip phases 3–5.
-- For 100+ items, score in batches of ~30 to avoid context overflow.
+- RSS `content` fields may contain multiple article snippets separated by `--- From rss ---`. When scoring or writing articles, use only the text before the first separator as the primary content.
